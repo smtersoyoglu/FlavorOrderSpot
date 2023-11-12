@@ -4,6 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="foodDetailsFragment"
+            type="com.sametersoyoglu.flavororderspot.ui.fragment.FoodDetailsFragment" />
+        
+        <variable
+            name="foodObject"
+            type="com.sametersoyoglu.flavororderspot.data.entity.Foods" />
+        <variable
+            name="foodCount"
+            type="Integer" />
 
     </data>
 

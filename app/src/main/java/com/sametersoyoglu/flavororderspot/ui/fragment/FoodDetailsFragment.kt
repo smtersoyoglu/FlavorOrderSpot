@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.sametersoyoglu.flavororderspot.R
+import com.sametersoyoglu.flavororderspot.databinding.FragmentFoodDetailsBinding
 
 
 class FoodDetailsFragment : Fragment() {
 
+    private lateinit var binding: FragmentFoodDetailsBinding
+    private var count = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,9 +23,15 @@ class FoodDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_food_details, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_food_details,container,false)
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.foodDetailsFragment = this
+        binding.foodCount = count
+
+    }
 
 }

@@ -23,7 +23,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="#00FFFFFF"
-                android:src="@drawable/favorite"
+                android:src="@drawable/heart_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

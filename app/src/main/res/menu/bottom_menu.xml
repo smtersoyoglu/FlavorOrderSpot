@@ -3,14 +3,14 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/home"
-        android:menuCategory="secondary"/>
+        android:menuCategory="secondary" />
     <item
         android:id="@+id/cartFragment"
         android:icon="@drawable/cart"
-        android:menuCategory="secondary"/>
+        android:menuCategory="secondary" />
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/favorite"
-        android:menuCategory="secondary"/>
+        android:menuCategory="secondary" />
 
 </menu>

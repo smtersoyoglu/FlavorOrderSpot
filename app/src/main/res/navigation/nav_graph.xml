@@ -14,7 +14,7 @@
             android:id="@+id/action_homeFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_foodDetailsFragment"
+            android:id="@+id/homeFragmentTofoodDetailsFragment"
             app:destination="@id/foodDetailsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_favoriteFragment"
@@ -29,7 +29,11 @@
         android:id="@+id/foodDetailsFragment"
         android:name="com.sametersoyoglu.flavororderspot.ui.fragment.FoodDetailsFragment"
         android:label="fragment_food_details"
-        tools:layout="@layout/fragment_food_details" />
+        tools:layout="@layout/fragment_food_details" >
+        <argument
+            android:name="food"
+            app:argType="com.sametersoyoglu.flavororderspot.data.entity.Foods" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.sametersoyoglu.flavororderspot.ui.fragment.FavoriteFragment"

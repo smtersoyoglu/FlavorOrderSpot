@@ -10,9 +10,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.databinding.FragmentHomeBinding
+import com.sametersoyoglu.flavororderspot.ui.adapter.FoodsAdapter
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -40,9 +42,10 @@ class HomeFragment : Fragment() {
         binding.homeFragment = this
         binding.toolbarTitle = "Hoşgeldiniz"
 
+        /*
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean { //harf girdikçe harf sildikce sonuç getirir.
-                viewModel.sear(newText)
+                viewModel.search(newText)
                 return true
             }
             override fun onQueryTextSubmit(query: String): Boolean { // arama iconuna bastığımız zaman sonuç getirir.
@@ -51,11 +54,13 @@ class HomeFragment : Fragment() {
             }
         })
 
-        // LiveData yapısı
-        viewModel.taskList.observe(viewLifecycleOwner) {
-            val taskListAdapter = TaskListAdapter(requireContext(),it,viewModel)
-            binding.taskListAdapter = taskListAdapter
-        }
+         */
 
+        // LiveData yapısı
+        viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
+            foods?.let {
+                val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
+                binding.foodsListAdapter = foodsListAdapter}
+        }
     }
 }

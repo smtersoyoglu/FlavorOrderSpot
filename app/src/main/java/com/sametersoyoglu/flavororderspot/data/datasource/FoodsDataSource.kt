@@ -7,8 +7,8 @@ import kotlinx.coroutines.withContext
 
 class FoodsDataSource (var foodsDao: FoodsDao) {
 
-    suspend fun search(searchWord: String) : List<Foods> =
+    suspend fun loadFoods() : List<Foods> =
         withContext(Dispatchers.IO){
-            return@withContext foodsDao.search(searchWord)
-        }
+        return@withContext foodsDao.getAllFoods().foods
+    }
 }

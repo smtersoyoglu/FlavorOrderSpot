@@ -11,8 +11,9 @@ import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.data.entity.Foods
 import com.sametersoyoglu.flavororderspot.databinding.ItemFoodsBinding
 import com.sametersoyoglu.flavororderspot.ui.fragment.HomeFragmentDirections
+import com.sametersoyoglu.flavororderspot.ui.viewmodel.HomeViewModel
 
-class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>) : RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>(){
+class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewModel: HomeViewModel) : RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>(){
 
     inner class FoodsViewHolder(var binding: ItemFoodsBinding) : RecyclerView.ViewHolder(binding.root)
 

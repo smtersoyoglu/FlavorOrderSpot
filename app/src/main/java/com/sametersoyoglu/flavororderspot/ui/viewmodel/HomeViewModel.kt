@@ -16,9 +16,4 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
     var foodsList = MutableLiveData<List<Foods>?>()
 
 
-    fun search(searchWord: String) {
-        CoroutineScope(Dispatchers.Main).launch {
-            foodsList.value = foodsRepository.search(searchWord)
-        }
-    }
 }

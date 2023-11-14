@@ -10,6 +10,9 @@
         <variable
             name="homeFragment"
             type="com.sametersoyoglu.flavororderspot.ui.fragment.HomeFragment" />
+        <variable
+            name="foodsListAdapter"
+            type="com.sametersoyoglu.flavororderspot.ui.adapter.FoodsAdapter" />
 
     </data>
 
@@ -50,6 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            android:adapter="@{foodsListAdapter}"
             app:spanCount="2"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

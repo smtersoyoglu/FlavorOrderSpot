@@ -1,5 +1,6 @@
 package com.sametersoyoglu.flavororderspot.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sametersoyoglu.flavororderspot.data.entity.Foods
@@ -15,5 +16,18 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
 
     var foodsList = MutableLiveData<List<Foods>?>()
 
+    fun loadFoods(){
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                foodsList.value =foodsRepository.loadFoods()
+                foodsRepository.loadFoods().forEach {
+                    Log.d("foods",it.food_name)
+                }
+            }catch (e: Exception){
+                Log.e("foods",e.toString())
+            }
+
+        }
+    }
 
 }

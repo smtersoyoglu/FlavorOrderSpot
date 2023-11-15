@@ -5,6 +5,6 @@ import com.sametersoyoglu.flavororderspot.data.entity.Foods
 
 class FoodsRepository (var foodsDataSource: FoodsDataSource){
 
-
+    suspend fun loadFoods() : List<Foods> = foodsDataSource.loadFoods()
 
 }

@@ -63,4 +63,9 @@ class HomeFragment : Fragment() {
                 binding.foodsListAdapter = foodsListAdapter}
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadFoods()
+    }
 }

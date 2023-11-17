@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.databinding.FragmentHomeBinding
 import com.sametersoyoglu.flavororderspot.ui.adapter.FoodsAdapter
@@ -41,6 +42,9 @@ class HomeFragment : Fragment() {
 
         binding.homeFragment = this
         binding.toolbarTitle = "Hoşgeldiniz"
+
+        //val layoutManager = GridLayoutManager(requireContext(), 2)
+        //binding.recyclerView.layoutManager = layoutManager
 
         /*
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

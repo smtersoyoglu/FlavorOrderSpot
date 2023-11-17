@@ -16,6 +16,9 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
 
     var foodsList = MutableLiveData<List<Foods>?>()
 
+    init {
+        loadFoods()
+    }
     fun loadFoods(){
         CoroutineScope(Dispatchers.Main).launch {
             try {

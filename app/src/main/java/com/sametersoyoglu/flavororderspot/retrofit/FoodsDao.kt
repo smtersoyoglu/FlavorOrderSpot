@@ -6,7 +6,7 @@ import retrofit2.http.GET
 interface FoodsDao {
 
     @GET("yemekler/tumYemekleriGetir.php")
-    fun getAllFoods() : FoodsResponse
+    suspend fun getAllFoods() : FoodsResponse
 
 
 }

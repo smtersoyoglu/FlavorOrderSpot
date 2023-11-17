@@ -26,6 +26,7 @@ class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewM
         val food = foodsList.get(position)
         val t = holder.binding
 
+
         t.foodName.text = "${food.food_name}"
         t.foodPrice.text = "${food.food_price} ₺"
 

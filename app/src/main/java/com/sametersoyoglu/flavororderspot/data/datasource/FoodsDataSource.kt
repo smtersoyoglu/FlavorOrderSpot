@@ -11,4 +11,8 @@ class FoodsDataSource (var foodsDao: FoodsDao) {
         withContext(Dispatchers.IO){
         return@withContext foodsDao.getAllFoods().foods
     }
+
+    suspend fun addToCart(foodName: String, foodImageName: String, foodPrice: Int, foodOrderQuantity: Int, userName: String) {
+        foodsDao.addToCart(foodName,foodImageName,foodPrice,foodOrderQuantity,userName)
+    }
 }

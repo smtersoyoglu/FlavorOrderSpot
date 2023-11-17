@@ -22,15 +22,14 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
     fun loadFoods(){
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                foodsList.value =foodsRepository.loadFoods()
-                foodsRepository.loadFoods().forEach {
+                val loadedFoods = foodsRepository.loadFoods()
+                foodsList.value = loadedFoods
+                loadedFoods.forEach {
                     Log.d("foods",it.food_name)
                 }
             }catch (e: Exception){
-                Log.e("foods",e.toString())
+                Log.e("foods","Hata oluştu: ${e.message}")
             }
-
         }
     }
-
 }

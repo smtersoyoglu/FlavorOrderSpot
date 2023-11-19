@@ -29,8 +29,8 @@ class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewM
 
         t.foodsObject = food
 
-        t.foodName.text = "${food.food_name}"
-        t.foodPrice.text = "${food.food_price} ₺"
+        //t.foodName.text = "${food.food_name}"
+        //t.foodPrice.text = "${food.food_price} ₺"
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.food_image_name}"
         Glide.with(mContext).load(url).into(t.foodImage)

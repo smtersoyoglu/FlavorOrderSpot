@@ -60,16 +60,18 @@ class HomeFragment : Fragment() {
 
          */
 
+        /*
         // LiveData yapısı
-        viewModel.foodsList.observe(viewLifecycleOwner) {
-            val foodsListAdapter = it?.let { it1 -> FoodsAdapter(requireContext(), it1,viewModel) }
-            binding.foodsListAdapter = foodsListAdapter
-            /*
-            foods ->
+        viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
             foods?.let {
                 val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
                 binding.foodsListAdapter = foodsListAdapter}
-             */
+        }
+         */
+
+        viewModel.foodsList.observe(viewLifecycleOwner) {
+            val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
+            binding.foodsListAdapter = foodsListAdapter
         }
     }
 

@@ -33,6 +33,9 @@
         <argument
             android:name="food"
             app:argType="com.sametersoyoglu.flavororderspot.data.entity.Foods" />
+        <action
+            android:id="@+id/foodDetailsFragmentTocartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"

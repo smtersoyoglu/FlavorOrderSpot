@@ -12,6 +12,7 @@ import com.sametersoyoglu.flavororderspot.data.entity.Foods
 import com.sametersoyoglu.flavororderspot.databinding.ItemFoodsBinding
 import com.sametersoyoglu.flavororderspot.ui.fragment.HomeFragmentDirections
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.HomeViewModel
+import com.sametersoyoglu.flavororderspot.util.gecisYap
 
 class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewModel: HomeViewModel) : RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>(){
 
@@ -26,6 +27,7 @@ class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewM
         val food = foodsList.get(position)
         val t = holder.binding
 
+        t.foodsObject = food
 
         t.foodName.text = "${food.food_name}"
         t.foodPrice.text = "${food.food_price} ₺"
@@ -34,8 +36,8 @@ class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewM
         Glide.with(mContext).load(url).into(t.foodImage)
 
         t.foodItemCardView.setOnClickListener {
-            val action = HomeFragmentDirections.homeFragmentTofoodDetailsFragment(food = food)
-            Navigation.findNavController(it).navigate(action)
+            val action = HomeFragmentDirections.homeFragmentTofoodDetailsFragment(food)
+            Navigation.gecisYap(it,action)
         }
     }
 

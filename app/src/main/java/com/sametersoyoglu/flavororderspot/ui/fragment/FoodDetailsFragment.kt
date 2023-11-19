@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.databinding.FragmentFoodDetailsBinding
@@ -50,6 +51,8 @@ class FoodDetailsFragment : Fragment() {
 
     fun onAddToCartButtonClicked(foodName: String, foodImageName: String, foodPrice: Int, foodOrderQuantity: Int, userName: String) {
         viewModel.addToCart(foodName, foodImageName, foodPrice, foodOrderQuantity, userName)
+        val action = FoodDetailsFragmentDirections.foodDetailsFragmentTocartFragment()
+        findNavController().navigate(action)
     }
 
 }

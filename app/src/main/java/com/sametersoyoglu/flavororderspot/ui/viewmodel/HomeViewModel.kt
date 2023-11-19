@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : ViewModel() {
 
-    var foodsList = MutableLiveData<List<Foods>?>()
+    var foodsList = MutableLiveData<List<Foods>>()
 
     init {
         loadFoods()

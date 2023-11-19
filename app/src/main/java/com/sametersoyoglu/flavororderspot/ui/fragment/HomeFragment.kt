@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.fragment.app.viewModels
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.databinding.FragmentHomeBinding
 import com.sametersoyoglu.flavororderspot.ui.adapter.FoodsAdapter
@@ -61,10 +61,15 @@ class HomeFragment : Fragment() {
          */
 
         // LiveData yapısı
-        viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
+        viewModel.foodsList.observe(viewLifecycleOwner) {
+            val foodsListAdapter = it?.let { it1 -> FoodsAdapter(requireContext(), it1,viewModel) }
+            binding.foodsListAdapter = foodsListAdapter
+            /*
+            foods ->
             foods?.let {
                 val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
                 binding.foodsListAdapter = foodsListAdapter}
+             */
         }
     }
 

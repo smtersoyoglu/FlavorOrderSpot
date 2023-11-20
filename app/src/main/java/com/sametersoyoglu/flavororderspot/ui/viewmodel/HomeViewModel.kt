@@ -21,6 +21,8 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
     }
     fun loadFoods(){
         CoroutineScope(Dispatchers.Main).launch {
+            //foodsList.value = foodsRepository.loadFoods()
+
             try {
                 val loadedFoods = foodsRepository.loadFoods()
                 foodsList.value = loadedFoods
@@ -30,6 +32,9 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
             }catch (e: Exception){
                 Log.e("foods","Hata oluştu: ${e.message}")
             }
+
+
         }
     }
+
 }

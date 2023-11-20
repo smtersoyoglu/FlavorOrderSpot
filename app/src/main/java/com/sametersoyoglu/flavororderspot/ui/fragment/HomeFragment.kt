@@ -60,21 +60,15 @@ class HomeFragment : Fragment() {
 
          */
 
-        /*
+
         // LiveData yapısı
         viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
             foods?.let {
                 val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
-                binding.foodsListAdapter = foodsListAdapter}
-        }
-         */
-
-        viewModel.foodsList.observe(viewLifecycleOwner) {
-            val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
-            binding.foodsListAdapter = foodsListAdapter
+                binding.recyclerView.adapter = foodsListAdapter}
+                //binding.foodsListAdapter = foodsListAdapter}
         }
     }
-
     override fun onResume() {
         super.onResume()
         viewModel.loadFoods()

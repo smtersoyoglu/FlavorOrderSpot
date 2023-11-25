@@ -53,7 +53,7 @@
                     android:id="@+id/foodPriceTotalText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="0 ₺"
@@ -68,6 +68,7 @@
                     android:id="@+id/foodPriceTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:text="0 ₺"
                     android:textColor="@color/cartFoodName"
@@ -123,7 +124,20 @@
                         android:src="@drawable/plus"
                         app:layout_constraintTop_toBottomOf="@+id/foodName"
                         tools:layout_editor_absoluteX="384dp" />
+
+
                 </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/closeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/close" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

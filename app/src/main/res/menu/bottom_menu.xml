@@ -2,15 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/home"
-        android:menuCategory="secondary" />
+        android:icon="@drawable/home_icon"
+        android:menuCategory="secondary"
+        android:title="Anasayfa" />
     <item
         android:id="@+id/cartFragment"
-        android:icon="@drawable/cart"
-        android:menuCategory="secondary" />
+        android:icon="@drawable/cart_icon"
+        android:menuCategory="secondary"
+        android:title="Sepet" />
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/favorite"
-        android:menuCategory="secondary" />
+        android:menuCategory="secondary"
+        android:title="Favoriler" />
 
 </menu>

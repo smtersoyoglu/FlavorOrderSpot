@@ -17,7 +17,7 @@
             android:id="@+id/homeFragmentTofoodDetailsFragment"
             app:destination="@id/foodDetailsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            android:id="@+id/homeFragmentTofavoriteFragment"
             app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment

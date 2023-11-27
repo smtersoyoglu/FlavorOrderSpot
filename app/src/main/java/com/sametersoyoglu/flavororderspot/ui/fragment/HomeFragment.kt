@@ -1,6 +1,7 @@
 package com.sametersoyoglu.flavororderspot.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +43,15 @@ class HomeFragment : Fragment() {
 
         binding.homeFragment = this
         binding.toolbarTitle = "Hoşgeldiniz"
+
+        Log.d("HomeFragment", "onViewCreated: Veriler yükleniyor...")
+        viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
+            foods?.let {
+                Log.d("HomeFragment", "onViewCreated: Veriler yüklendi. Food sayısı: ${foods.size}")
+                val foodsListAdapter = FoodsAdapter(requireContext(), it, viewModel)
+                binding.recyclerView.adapter = foodsListAdapter
+            }
+        }
 
         //val layoutManager = GridLayoutManager(requireContext(), 2)
         //binding.recyclerView.layoutManager = layoutManager

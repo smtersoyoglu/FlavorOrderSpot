@@ -32,8 +32,6 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
             }catch (e: Exception){
                 Log.e("foods","Hata oluştu: ${e.message}")
             }
-
-
         }
     }
 

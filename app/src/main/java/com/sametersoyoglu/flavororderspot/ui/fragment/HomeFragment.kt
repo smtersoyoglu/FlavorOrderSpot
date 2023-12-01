@@ -27,7 +27,6 @@ class HomeFragment : Fragment() {
         // ViewModeli bağlama - onCreate içersinde olur bu işlem
         val tempViewModel:HomeViewModel by viewModels()
         viewModel = tempViewModel
-
     }
 
     override fun onCreateView(
@@ -44,15 +43,6 @@ class HomeFragment : Fragment() {
         binding.homeFragment = this
         binding.toolbarTitle = "Hoşgeldiniz"
 
-        Log.d("HomeFragment", "onViewCreated: Veriler yükleniyor...")
-        viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
-            foods?.let {
-                Log.d("HomeFragment", "onViewCreated: Veriler yüklendi. Food sayısı: ${foods.size}")
-                val foodsListAdapter = FoodsAdapter(requireContext(), it, viewModel)
-                binding.recyclerView.adapter = foodsListAdapter
-            }
-        }
-
         //val layoutManager = GridLayoutManager(requireContext(), 2)
         //binding.recyclerView.layoutManager = layoutManager
 
@@ -67,7 +57,6 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
-
          */
 
 
@@ -75,7 +64,7 @@ class HomeFragment : Fragment() {
         viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
             foods?.let {
                 val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
-                binding.recyclerView.adapter = foodsListAdapter}
+                binding.recyclerView.adapter = foodsListAdapter }
                 //binding.foodsListAdapter = foodsListAdapter}
         }
     }

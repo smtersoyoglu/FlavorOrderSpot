@@ -22,6 +22,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // ViewModeli bağlama - onCreate içersinde olur bu işlem
@@ -42,6 +44,10 @@ class HomeFragment : Fragment() {
 
         binding.homeFragment = this
         binding.toolbarTitle = "Hoşgeldiniz"
+
+        val layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerView.layoutManager = layoutManager
+
 
         // LiveData yapısı
         viewModel.foodsList.observe(viewLifecycleOwner) { foods ->

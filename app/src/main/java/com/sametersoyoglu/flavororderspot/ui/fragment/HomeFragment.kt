@@ -43,6 +43,14 @@ class HomeFragment : Fragment() {
         binding.homeFragment = this
         binding.toolbarTitle = "Hoşgeldiniz"
 
+        // LiveData yapısı
+        viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
+            foods?.let {
+                val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
+                binding.recyclerView.adapter = foodsListAdapter }
+            //binding.foodsListAdapter = foodsListAdapter}
+        }
+
         //val layoutManager = GridLayoutManager(requireContext(), 2)
         //binding.recyclerView.layoutManager = layoutManager
 
@@ -59,14 +67,6 @@ class HomeFragment : Fragment() {
         })
          */
 
-
-        // LiveData yapısı
-        viewModel.foodsList.observe(viewLifecycleOwner) { foods ->
-            foods?.let {
-                val foodsListAdapter = FoodsAdapter(requireContext(),it,viewModel)
-                binding.recyclerView.adapter = foodsListAdapter }
-                //binding.foodsListAdapter = foodsListAdapter}
-        }
     }
     override fun onResume() {
         super.onResume()

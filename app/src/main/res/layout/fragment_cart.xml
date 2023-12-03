@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="cartFragment"
+            type="com.sametersoyoglu.flavororderspot.ui.fragment.CartFragment" />
+        <variable
+            name="cartAdapter"
+            type="com.sametersoyoglu.flavororderspot.ui.adapter.CartAdapter" />
 
     </data>
 
@@ -73,6 +79,8 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:adapter="@{cartAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

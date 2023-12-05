@@ -22,6 +22,7 @@ class FoodDetailsFragment : Fragment() {
     private lateinit var binding: FragmentFoodDetailsBinding
     private lateinit var viewModel: FoodDetailsViewModel
     private var count = 1
+    private var totalPrice = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // ViewModeli bağlama - onCreate içersinde olur bu işlem
@@ -49,6 +50,9 @@ class FoodDetailsFragment : Fragment() {
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${receivedFood.food_image_name}"
         Glide.with(this).load(url).into(binding.foodImage)
 
+        buttonMinus()
+        buttonPlus()
+        totalPrice()
 
     }
 
@@ -58,4 +62,24 @@ class FoodDetailsFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    fun buttonMinus() {
+        if (count > 1) {
+            count--
+            binding.foodCount = count
+            totalPrice()
+            //binding.foodPrice.text = "${count * binding.foodObject!!.food_price}  ₺"
+        }
+    }
+
+    fun buttonPlus() {
+        count++
+        binding.foodCount = count
+        totalPrice()
+        //binding.foodPrice.text = "${count * binding.foodObject!!.food_price}  ₺"
+    }
+
+    fun totalPrice() {
+        totalPrice = count * binding.foodObject!!.food_price
+        binding.totalPriceText.text = "${totalPrice} ₺"
+    }
 }

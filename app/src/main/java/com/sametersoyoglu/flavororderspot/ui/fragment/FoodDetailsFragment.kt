@@ -70,7 +70,6 @@ class FoodDetailsFragment : Fragment() {
             //binding.foodPrice.text = "${count * binding.foodObject!!.food_price}  ₺"
         }
     }
-
     fun buttonPlus() {
         count++
         binding.foodCount = count

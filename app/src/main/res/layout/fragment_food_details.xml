@@ -25,8 +25,8 @@
 
         <ImageView
             android:id="@+id/foodImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="230dp"
+            android:layout_height="250dp"
             android:layout_marginTop="44dp"
             android:src="@drawable/makarna"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
             android:id="@+id/foodPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text='@{foodObject.food_price +" ₺"}'
             android:textSize="24sp"
             android:textStyle="bold"
@@ -121,9 +121,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Add to cart"
             android:onClick="@{() -> foodDetailsFragment.onAddToCartButtonClicked(foodObject.food_name, foodObject.food_image_name, foodObject.food_price,foodCount,`sametersoyoglu`)}"
+            android:text="Add to cart"
             android:textSize="24sp"
+            app:cornerRadius="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -136,6 +137,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/heart_red" />
+
+        <ImageView
+            android:id="@+id/exitImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/close" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.databinding.FragmentFoodDetailsBinding
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.FoodDetailsViewModel
@@ -45,6 +46,8 @@ class FoodDetailsFragment : Fragment() {
         val receivedFood = bundle.food
         binding.foodObject = receivedFood
 
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${receivedFood.food_image_name}"
+        Glide.with(this).load(url).into(binding.foodImage)
 
 
     }

@@ -1,6 +1,8 @@
 package com.sametersoyoglu.flavororderspot.ui.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,4 +47,18 @@ class CartFragment : Fragment() {
 
     }
 
+    private fun showCongratsDialog() {
+        val congratsDialogBuilder = AlertDialog.Builder(context)
+        congratsDialogBuilder.setTitle("Tebrikler")
+        congratsDialogBuilder.setMessage("Sipariş verdiniz!")
+
+        val congratsDialog = congratsDialogBuilder.create()
+        congratsDialog.show()
+
+        val handler = Handler()
+        val runnable = Runnable {
+            congratsDialog.dismiss()
+        }
+        handler.postDelayed(runnable, 3000)
+    }
 }

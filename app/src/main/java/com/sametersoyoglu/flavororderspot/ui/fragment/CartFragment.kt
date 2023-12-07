@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.databinding.FragmentCartBinding
+import com.sametersoyoglu.flavororderspot.ui.adapter.FoodsAdapter
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +40,16 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.cartFragment= this
+
+        /*
+        viewModel.cartFoodList.observe(viewLifecycleOwner) { cartfoods ->
+            cartfoods?.let {
+                val cartAdapter = FoodsAdapter(requireContext(),it,viewModel)
+                binding.recyclerView.adapter = cartAdapter }
+            //binding.foodsListAdapter = foodsListAdapter}
+        }
+
+         */
 
 
     }

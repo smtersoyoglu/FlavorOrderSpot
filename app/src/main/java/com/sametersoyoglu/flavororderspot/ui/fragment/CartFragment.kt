@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.databinding.FragmentCartBinding
+import com.sametersoyoglu.flavororderspot.ui.adapter.CartAdapter
 import com.sametersoyoglu.flavororderspot.ui.adapter.FoodsAdapter
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,16 +43,19 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.cartFragment= this
 
-        /*
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+        viewModel.loadCart("sametersoyoglu")
+
         viewModel.cartFoodList.observe(viewLifecycleOwner) { cartfoods ->
             cartfoods?.let {
-                val cartAdapter = FoodsAdapter(requireContext(),it,viewModel)
+                val cartAdapter = CartAdapter(requireContext(),it,viewModel)
                 binding.recyclerView.adapter = cartAdapter }
             //binding.foodsListAdapter = foodsListAdapter}
         }
 
-         */
-
+        //showCongratsDialog()
 
     }
 

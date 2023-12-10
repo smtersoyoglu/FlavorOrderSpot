@@ -1,5 +1,6 @@
 package com.sametersoyoglu.flavororderspot.data.datasource
 
+import com.sametersoyoglu.flavororderspot.data.entity.CartItem
 import com.sametersoyoglu.flavororderspot.data.entity.Foods
 import com.sametersoyoglu.flavororderspot.retrofit.FoodsDao
 import kotlinx.coroutines.Dispatchers
@@ -15,4 +16,11 @@ class FoodsDataSource (var foodsDao: FoodsDao) {
     suspend fun addToCart(foodName: String, foodImageName: String, foodPrice: Int, foodOrderQuantity: Int, userName: String) {
         foodsDao.addToCart(foodName,foodImageName,foodPrice,foodOrderQuantity,userName)
     }
+
+    suspend fun loadCart(userName: String) : List<CartItem> =
+        withContext(Dispatchers.IO) {
+            return@withContext foodsDao.loadCart(userName).cart_foods
+        }
+
+
 }

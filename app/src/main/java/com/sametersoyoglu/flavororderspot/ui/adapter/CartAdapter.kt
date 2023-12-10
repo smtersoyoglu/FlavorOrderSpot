@@ -27,6 +27,10 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
         val cart = cartFoodList.get(position)
         val t = holder.binding
 
+        t.foodNameTextView.text = cart.food_name
+        t.foodPriceTextView.text = "₺${cart.food_price}"
+        t.orderAmountText.text = cart.food_order_quantity.toString()
+
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${cart.food_image_name}"
         Glide.with(mContext).load(url).into(t.imageViewFood)
 

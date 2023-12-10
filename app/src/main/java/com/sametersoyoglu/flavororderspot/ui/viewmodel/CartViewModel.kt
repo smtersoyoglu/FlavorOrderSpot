@@ -20,7 +20,7 @@ class CartViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
         loadCart("sametersoyoglu")
     }
 
-    fun addCart(food_name : String,
+    fun addToCart(food_name : String,
                 food_image_name : String,
                 food_price : Int,
                 food_order_quantity : Int,

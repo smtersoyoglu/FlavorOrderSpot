@@ -22,5 +22,8 @@ class FoodsDataSource (var foodsDao: FoodsDao) {
             return@withContext foodsDao.loadCart(userName).cart_foods
         }
 
+    suspend fun deleteFoodFromCart(cart_food_id: Int, username: String) {
+        foodsDao.deleteFoodFromCart(cart_food_id,username)
+    }
 
 }

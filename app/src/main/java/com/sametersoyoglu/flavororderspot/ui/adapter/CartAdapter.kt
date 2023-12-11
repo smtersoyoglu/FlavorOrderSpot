@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.data.entity.CartItem
 import com.sametersoyoglu.flavororderspot.databinding.ItemCartBinding
@@ -35,7 +36,10 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
         Glide.with(mContext).load(url).into(t.imageViewFood)
 
         t.minusButton.setOnClickListener {
-
+            if (cart.food_order_quantity > 1) {
+                cart.food_order_quantity --
+                t.orderAmountText.text = cart.food_order_quantity.toString()
+            }
         }
 
         t.plusButton.setOnClickListener {
@@ -43,7 +47,14 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
         }
 
         t.closeButton.setOnClickListener {
+            val message = "${cart.food_name} sepetten çıkarılsın mı ?"
+            Snackbar.make(it, message, Snackbar.LENGTH_LONG)
+                .setAction("EVET") {
 
+                    viewModel.deleteFoodFromCart(cart.cart_food_id,cart.username)
+                    //viewModel.loadCart("sametersoyoglu")
+                }.show()
+            //viewModel.deleteFoodFromCart(cart.cart_food_id,cart.username)
         }
     }
 

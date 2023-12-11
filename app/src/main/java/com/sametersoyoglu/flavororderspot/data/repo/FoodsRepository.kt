@@ -11,4 +11,5 @@ class FoodsRepository (var foodsDataSource: FoodsDataSource){
     suspend fun addToCart(foodName: String, foodImageName: String, foodPrice: Int, foodOrderQuantity: Int, userName: String) = foodsDataSource.addToCart(foodName,foodImageName,foodPrice,foodOrderQuantity,userName)
 
     suspend fun loadCart(userName: String) : List<CartItem> = foodsDataSource.loadCart(userName)
+    suspend fun deleteFoodFromCart(cart_food_id: Int, username: String) = foodsDataSource.deleteFoodFromCart(cart_food_id,username)
 }

@@ -56,10 +56,27 @@ class CartFragment : Fragment() {
         }
 
         //showCongratsDialog()
+        //deleteFoodFromCart()
+
+        binding.orderButton.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Siparişi Onaylıyor musunuz?")
+            builder.setPositiveButton("Evet") { dialog, which ->
+                dialog.dismiss()
+                showCongratsDialog()
+                deleteFoodFromCart()
+            }
+            builder.setNegativeButton("Hayır") { dialog, which ->
+
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+        }
 
     }
 
-    fun deleteFoods() {
+    fun deleteFoodFromCart() {
 
     }
 

@@ -23,8 +23,6 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
         return CartItemHolder(binding)
     }
 
-
-
     override fun onBindViewHolder(holder: CartItemHolder, position: Int) {
 
         val cart = cartFoodList.get(position)

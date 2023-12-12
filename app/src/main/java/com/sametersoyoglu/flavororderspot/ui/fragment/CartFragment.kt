@@ -46,7 +46,7 @@ class CartFragment : Fragment() {
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
-        viewModel.loadCart("sametersoyoglu")
+        //viewModel.loadCart("sametersoyoglu")
 
         viewModel.totalPrice.observe(viewLifecycleOwner) {
             binding.totalPriceText.text = "Toplam : ${it} ₺"

@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="cartObject"
-            type="com.sametersoyoglu.flavororderspot.data.entity.CartItem" />
+
     </data>
 
     <LinearLayout
@@ -17,12 +15,12 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cartItemCardView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_margin="8dp"
+            app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:cardCornerRadius="15dp">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -44,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{cartObject.food_name}"
+                    android:text=""
                     android:textColor="@color/cartFoodName"
                     android:textSize="18sp"
                     android:textStyle="bold"

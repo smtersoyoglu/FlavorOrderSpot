@@ -30,7 +30,8 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
         t.foodNameTextView.text = cart.food_name
         t.foodPriceTextView.text = "₺${cart.food_price}"
-        t.foodPriceTotalText.text = "${cart.food_price * cart.food_order_quantity}  ₺"
+        //t.foodPriceTotalText.text = "${cart.food_price * cart.food_order_quantity}  ₺"
+        t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
         t.orderAmountText.text = cart.food_order_quantity.toString()
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${cart.food_image_name}"
@@ -40,12 +41,15 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
             if (cart.food_order_quantity > 1) {
                 cart.food_order_quantity --
                 t.orderAmountText.text = cart.food_order_quantity.toString()
+
+                // Update the total price when decreasing quantity
+                //t.foodPriceTotalText.text = "${cart.food_price * cart.food_order_quantity} ₺"
+                t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
             }
         }
 
         t.plusButton.setOnClickListener {
             val cartFood = cartFoodList.find { it.food_name == cart.food_name }
-
             if (cartFood != null) {
                 // Eğer cartFoodList içinde bu yemek varsa
                 viewModel.deleteFoodFromCart(cartFood.cart_food_id, cartFood.username)
@@ -57,7 +61,6 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
             cart.food_order_quantity++
             t.orderAmountText.text = cart.food_order_quantity.toString()
-
         }
 
         t.closeButton.setOnClickListener {
@@ -74,6 +77,10 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
     override fun getItemCount(): Int {
         return cartFoodList.size
+    }
+
+    fun CartItem.getTotalPrice(): Int {
+        return food_price * food_order_quantity
     }
 
 }

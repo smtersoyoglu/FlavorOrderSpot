@@ -23,6 +23,7 @@ class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private lateinit var viewModel: CartViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // ViewModeli bağlama - onCreate içersinde olur bu işlem
@@ -51,6 +52,7 @@ class CartFragment : Fragment() {
         viewModel.totalPrice.observe(viewLifecycleOwner) {
             binding.totalPriceText.text = "Toplam : ${it} ₺"
         }
+
 
         viewModel.cartFoodList.observe(viewLifecycleOwner) { cartfoods ->
             cartfoods?.let {

@@ -30,6 +30,7 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
         t.foodNameTextView.text = cart.food_name
         t.foodPriceTextView.text = "₺${cart.food_price}"
+        t.foodPriceTotalText.text = "${cart.food_price * cart.food_order_quantity}  ₺"
         t.orderAmountText.text = cart.food_order_quantity.toString()
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${cart.food_image_name}"
@@ -56,6 +57,7 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
             cart.food_order_quantity++
             t.orderAmountText.text = cart.food_order_quantity.toString()
+
         }
 
         t.closeButton.setOnClickListener {

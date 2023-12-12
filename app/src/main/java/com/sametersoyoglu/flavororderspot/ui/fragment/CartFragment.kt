@@ -48,10 +48,15 @@ class CartFragment : Fragment() {
 
         viewModel.loadCart("sametersoyoglu")
 
+        viewModel.totalPrice.observe(viewLifecycleOwner) {
+            binding.totalPriceText.text = "Toplam : ${it} ₺"
+        }
+
         viewModel.cartFoodList.observe(viewLifecycleOwner) { cartfoods ->
             cartfoods?.let {
                 val cartAdapter = CartAdapter(requireContext(),it,viewModel)
-                binding.recyclerView.adapter = cartAdapter }
+                binding.recyclerView.adapter = cartAdapter
+            }
             //binding.foodsListAdapter = foodsListAdapter}
         }
 

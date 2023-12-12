@@ -14,6 +14,8 @@ import com.sametersoyoglu.flavororderspot.ui.viewmodel.CartViewModel
 
 class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var viewModel:CartViewModel) : RecyclerView.Adapter<CartAdapter.CartItemHolder>(){
 
+    private var quantity: Int = 1
+
     inner class CartItemHolder(var binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemHolder {
@@ -43,7 +45,19 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
         }
 
         t.plusButton.setOnClickListener {
+            val cartFood = cartFoodList.find { it.food_name == cart.food_name }
 
+            if (cartFood != null) {
+                // Eğer cartFoodList içinde bu yemek varsa
+                viewModel.deleteFoodFromCart(cartFood.cart_food_id, cartFood.username)
+                viewModel.addToCart(cartFood.food_name, cartFood.food_image_name, cartFood.food_price, cartFood.food_order_quantity + 1, "sametersoyoglu")
+            } else {
+                // Eğer cartFoodList içinde bu yemek yoksa, yenisini ekleyin
+                viewModel.addToCart(cart.food_name, cart.food_image_name, cart.food_price, 1, "sametersoyoglu")
+            }
+
+            cart.food_order_quantity++
+            t.orderAmountText.text = cart.food_order_quantity.toString()
         }
 
         t.closeButton.setOnClickListener {

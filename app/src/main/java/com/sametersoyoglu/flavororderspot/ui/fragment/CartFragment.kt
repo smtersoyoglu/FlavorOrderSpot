@@ -43,7 +43,7 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.cartFragment= this
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
         viewModel.loadCart("sametersoyoglu")
@@ -55,7 +55,7 @@ class CartFragment : Fragment() {
         viewModel.cartFoodList.observe(viewLifecycleOwner) { cartfoods ->
             cartfoods?.let {
                 val cartAdapter = CartAdapter(requireContext(),it,viewModel)
-                binding.recyclerView.adapter = cartAdapter
+                binding.cartRecyclerView.adapter = cartAdapter
             }
             //binding.foodsListAdapter = foodsListAdapter}
         }

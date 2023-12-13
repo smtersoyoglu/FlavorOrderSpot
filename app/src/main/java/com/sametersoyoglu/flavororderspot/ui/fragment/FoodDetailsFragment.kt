@@ -21,7 +21,7 @@ class FoodDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodDetailsBinding
     private lateinit var viewModel: FoodDetailsViewModel
-    private var count = 1
+    private var count = 0
     private var totalPrice = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametersoyoglu.flavororderspot.R
+import com.sametersoyoglu.flavororderspot.data.entity.CartItem
 import com.sametersoyoglu.flavororderspot.databinding.FragmentCartBinding
 import com.sametersoyoglu.flavororderspot.ui.adapter.CartAdapter
 import com.sametersoyoglu.flavororderspot.ui.adapter.FoodsAdapter
@@ -22,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private lateinit var viewModel: CartViewModel
+    private var foodList : List<CartItem> = listOf()
 
     
 
@@ -63,19 +65,17 @@ class CartFragment : Fragment() {
             //binding.foodsListAdapter = foodsListAdapter}
         }
 
-        //showCongratsDialog()
-        //deleteFoodFromCart()
-
         binding.orderButton.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Siparişi Onaylıyor musunuz?")
             builder.setPositiveButton("Evet") { dialog, which ->
                 dialog.dismiss()
                 showCongratsDialog()
+
+                // Sipariş onaylandığında siparişleri sil
                 deleteFoodFromCart()
             }
             builder.setNegativeButton("Hayır") { dialog, which ->
-
                 dialog.dismiss()
             }
             val dialog = builder.create()
@@ -85,7 +85,13 @@ class CartFragment : Fragment() {
     }
 
     fun deleteFoodFromCart() {
+        // foodList içindeki her bir öğeyi silebilirsiniz
+        foodList.forEach { viewModel.deleteFoodFromCart(it.cart_food_id, it.username) }
 
+        viewModel.loadCart("sametersoyoglu")
+
+        // RecyclerView'yi güncelleyin
+        binding.cartRecyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun showCongratsDialog() {

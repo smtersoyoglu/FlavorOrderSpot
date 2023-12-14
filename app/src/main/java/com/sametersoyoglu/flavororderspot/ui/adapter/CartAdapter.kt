@@ -30,7 +30,6 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
         t.foodNameTextView.text = cart.food_name
         t.foodPriceTextView.text = "₺${cart.food_price}"
-        //t.foodPriceTotalText.text = "${cart.food_price * cart.food_order_quantity}  ₺"
         t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
         t.orderAmountText.text = cart.food_order_quantity.toString()
 
@@ -42,14 +41,19 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
                 cart.food_order_quantity --
                 t.orderAmountText.text = cart.food_order_quantity.toString()
 
+                if (cart.food_order_quantity == 0) {
+                    viewModel.deleteFoodFromCart(cart.cart_food_id,cart.username)
+                }
                 // Update the total price when decreasing quantity
                 //t.foodPriceTotalText.text = "${cart.food_price * cart.food_order_quantity} ₺"
-                t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
+                //t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
+
             }
         }
 
         t.plusButton.setOnClickListener {
 
+            /*
             val cartFood = cartFoodList.find { it.food_name == cart.food_name }
             if (cartFood != null) {
                 // Eğer cartFoodList içinde bu yemek varsa
@@ -61,8 +65,17 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
             }
             cart.food_order_quantity++
             t.orderAmountText.text = cart.food_order_quantity.toString()
+             */
+            cartFoodList.forEach {
+                if(cart.food_name == it.food_name){
+                    viewModel.deleteFoodFromCart(it.cart_food_id,it.username)
+                    quantity += it.food_order_quantity
+                    viewModel.addToCart(cart.food_name,cart.food_image_name,cart.food_price,quantity,"sametersoyoglu")
+                }
+            }
+            cart.food_order_quantity++
+            t.orderAmountText.text = cart.food_order_quantity.toString()
 
-            // Inside the click event for the "plusButton" in the UI
         }
 
         t.closeButton.setOnClickListener {
@@ -71,7 +84,7 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
                 .setAction("EVET") {
 
                     viewModel.deleteFoodFromCart(cart.cart_food_id,cart.username)
-                    //viewModel.loadCart("sametersoyoglu")
+                    viewModel.loadCart("sametersoyoglu")
                 }.show()
         }
     }

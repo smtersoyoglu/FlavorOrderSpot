@@ -10,11 +10,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.data.entity.CartItem
 import com.sametersoyoglu.flavororderspot.databinding.FragmentCartBinding
 import com.sametersoyoglu.flavororderspot.ui.adapter.CartAdapter
-import com.sametersoyoglu.flavororderspot.ui.adapter.FoodsAdapter
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +24,6 @@ class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private lateinit var viewModel: CartViewModel
     private var foodList : List<CartItem> = listOf()
-
-    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,27 +38,44 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_cart,container,false)
+        viewModel.loadCart("sametersoyoglu")
+        binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val recyclerView: RecyclerView = binding.cartRecyclerView
+
+        // LinearLayoutManager oluşturup RecyclerView'e ayarlamak
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd = true
+        recyclerView.layoutManager = linearLayoutManager
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.cartFragment= this
+        //binding.cartFragment= this
+    /*
 
-        binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+     */
 
         //viewModel.loadCart("sametersoyoglu")
 
         viewModel.totalPrice.observe(viewLifecycleOwner) {
-            binding.totalPriceText.text = "Toplam : ${it} ₺"
+            binding.totalPriceText.text = "₺${it.toString()}"
         }
-
 
         viewModel.cartFoodList.observe(viewLifecycleOwner) { cartfoods ->
             cartfoods?.let {
                 val cartAdapter = CartAdapter(requireContext(),it,viewModel)
                 binding.cartRecyclerView.adapter = cartAdapter
+
+                /*
+                if (it != null) {
+                    foodList = it
+                }
+
+                 */
             }
             //binding.foodsListAdapter = foodsListAdapter}
         }
@@ -71,7 +86,6 @@ class CartFragment : Fragment() {
             builder.setPositiveButton("Evet") { dialog, which ->
                 dialog.dismiss()
                 showCongratsDialog()
-
                 // Sipariş onaylandığında siparişleri sil
                 deleteFoodFromCart()
             }
@@ -90,8 +104,6 @@ class CartFragment : Fragment() {
 
         viewModel.loadCart("sametersoyoglu")
 
-        // RecyclerView'yi güncelleyin
-        binding.cartRecyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun showCongratsDialog() {

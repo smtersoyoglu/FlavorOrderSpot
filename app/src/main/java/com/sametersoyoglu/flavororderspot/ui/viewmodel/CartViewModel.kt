@@ -1,5 +1,6 @@
 package com.sametersoyoglu.flavororderspot.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sametersoyoglu.flavororderspot.data.entity.CartItem
@@ -13,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CartViewModel @Inject constructor(var foodsRepository: FoodsRepository) : ViewModel() {
 
-    var cartFoodList = MutableLiveData<List<CartItem>>()
+    var cartFoodList = MutableLiveData<List<CartItem>?>()
     var totalPrice = MutableLiveData<Int>()
 
     init {
@@ -31,10 +32,22 @@ class CartViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
     }
 
     fun loadCart(username:String) {
+
         CoroutineScope(Dispatchers.Main).launch {
-            cartFoodList.value = foodsRepository.loadCart(username)
+            //cartFoodList.value = foodsRepository.loadCart(username)
+            //totalPrice()
+            try {
+                cartFoodList.value = foodsRepository.loadCart(username)
+            }catch (e:Exception){
+                cartFoodList.value = null
+                Log.e("hata mesajı",e.message.toString())
+            }
+            foodsRepository.loadCart(username).forEach{
+                Log.d("sipariş",it.username)
+            }
             totalPrice()
         }
+
     }
 
 

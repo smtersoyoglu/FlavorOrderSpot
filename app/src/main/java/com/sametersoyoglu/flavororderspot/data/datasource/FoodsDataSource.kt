@@ -1,5 +1,6 @@
 package com.sametersoyoglu.flavororderspot.data.datasource
 
+import android.util.Log
 import com.sametersoyoglu.flavororderspot.data.entity.CartItem
 import com.sametersoyoglu.flavororderspot.data.entity.Foods
 import com.sametersoyoglu.flavororderspot.retrofit.FoodsDao
@@ -17,9 +18,9 @@ class FoodsDataSource (var foodsDao: FoodsDao) {
         foodsDao.addToCart(foodName,foodImageName,foodPrice,foodOrderQuantity,userName)
     }
 
-    suspend fun loadCart(userName: String) : List<CartItem> =
+    suspend fun loadCart(username: String) : List<CartItem> =
         withContext(Dispatchers.IO) {
-            return@withContext foodsDao.loadCart(userName).cart_foods
+            return@withContext foodsDao.loadCart(username).cart_foods
         }
 
     suspend fun deleteFoodFromCart(cart_food_id: Int, username: String) {

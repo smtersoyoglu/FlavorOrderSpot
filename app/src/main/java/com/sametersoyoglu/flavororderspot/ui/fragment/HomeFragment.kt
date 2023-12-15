@@ -57,9 +57,6 @@ class HomeFragment : Fragment() {
             //binding.foodsListAdapter = foodsListAdapter}
         }
 
-        //val layoutManager = GridLayoutManager(requireContext(), 2)
-        //binding.recyclerView.layoutManager = layoutManager
-
         /*
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean { //harf girdikçe harf sildikce sonuç getirir.

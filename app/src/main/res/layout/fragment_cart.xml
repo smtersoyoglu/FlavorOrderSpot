@@ -50,7 +50,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="28dp"
                     android:layout_marginBottom="16dp"
-                    android:text="20 TL"
+                    android:text=""
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/orderButton"

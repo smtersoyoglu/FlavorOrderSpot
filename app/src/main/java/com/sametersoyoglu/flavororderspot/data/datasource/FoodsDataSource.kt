@@ -14,8 +14,9 @@ class FoodsDataSource (var foodsDao: FoodsDao) {
         return@withContext foodsDao.getAllFoods().foods
         }
 
-    suspend fun addToCart(foodName: String, foodImageName: String, foodPrice: Int, foodOrderQuantity: Int, userName: String) {
-        foodsDao.addToCart(foodName,foodImageName,foodPrice,foodOrderQuantity,userName)
+    suspend fun addToCart(food_name : String, food_image_name : String,
+                          food_price : Int, food_order_quantity : Int, username : String) {
+        foodsDao.addToCart(food_name,food_image_name,food_price,food_order_quantity,username)
     }
 
     suspend fun loadCart(username: String) : List<CartItem> =

@@ -1,6 +1,7 @@
 package com.sametersoyoglu.flavororderspot.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,7 @@ class FoodDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodDetailsBinding
     private lateinit var viewModel: FoodDetailsViewModel
-    private var count = 0
+    private var count = 1
     private var totalPrice = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,18 +51,14 @@ class FoodDetailsFragment : Fragment() {
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${receivedFood.food_image_name}"
         Glide.with(this).load(url).into(binding.foodImage)
 
-        buttonMinus()
-        buttonPlus()
-        totalPrice()
 
-    }
-
-    fun onAddToCartButtonClicked(foodName: String, foodImageName: String, foodPrice: Int, foodOrderQuantity: Int, userName: String) {
-        viewModel.addToCart(foodName, foodImageName, foodPrice, foodOrderQuantity, userName)
+}
+    fun onAddToCartButtonClicked(food_name : String, food_image_name : String, food_price : Int,
+                  food_order_quantity : Int, username : String) {
+        viewModel.addToCart(food_name,food_image_name,food_price,food_order_quantity,username)
         val action = FoodDetailsFragmentDirections.foodDetailsFragmentTocartFragment()
         findNavController().navigate(action)
     }
-
     fun buttonMinus() {
         if (count > 1) {
             count--

@@ -21,7 +21,13 @@ class FoodsDataSource (var foodsDao: FoodsDao) {
 
     suspend fun loadCart(username: String) : List<CartItem> =
         withContext(Dispatchers.IO) {
-            return@withContext foodsDao.loadCart(username).cart_foods
+            try {
+                return@withContext foodsDao.loadCart(username).cart_foods
+
+            }catch (e:Exception){
+                Log.e("hata mesajı",e.message.toString())
+                return@withContext emptyList()
+            }
         }
 
     suspend fun deleteFoodFromCart(cart_food_id: Int, username: String) {

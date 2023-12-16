@@ -19,7 +19,6 @@ import com.sametersoyoglu.flavororderspot.ui.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private lateinit var viewModel: CartViewModel
@@ -38,8 +37,11 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_cart,container,false)
-        viewModel.loadCart("sametersoyoglu")
+        binding.cartFragment = this
+
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        viewModel.loadCart("sametersoyoglu")
 
         val recyclerView: RecyclerView = binding.cartRecyclerView
 
@@ -54,58 +56,46 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //binding.cartFragment= this
-    /*
-
-
-     */
-
-        //viewModel.loadCart("sametersoyoglu")
-
-        viewModel.totalPrice.observe(viewLifecycleOwner) {
-            binding.totalPriceText.text = "₺${it.toString()}"
-        }
 
         viewModel.cartFoodList.observe(viewLifecycleOwner) { cartfoods ->
             cartfoods?.let {
                 val cartAdapter = CartAdapter(requireContext(),it,viewModel)
                 binding.cartRecyclerView.adapter = cartAdapter
-
-                /*
-                if (it != null) {
-                    foodList = it
-                }
-
-                 */
+                foodList = it
             }
-            //binding.foodsListAdapter = foodsListAdapter}
         }
 
-        binding.orderButton.setOnClickListener {
-            val builder = AlertDialog.Builder(context)
-            builder.setTitle("Siparişi Onaylıyor musunuz?")
-            builder.setPositiveButton("Evet") { dialog, which ->
-                dialog.dismiss()
-                showCongratsDialog()
-                // Sipariş onaylandığında siparişleri sil
-                deleteFoodFromCart()
-            }
-            builder.setNegativeButton("Hayır") { dialog, which ->
-                dialog.dismiss()
-            }
-            val dialog = builder.create()
-            dialog.show()
+
+        viewModel.totalPrice.observe(viewLifecycleOwner) {
+            binding.totalPriceText.text = "₺${it}"
         }
 
     }
+    fun orderButton() {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Siparişi Onaylıyor musunuz?")
+        builder.setPositiveButton("Evet") { dialog, which ->
+            dialog.dismiss()
+            showCongratsDialog()
+            // Sipariş onaylandığında siparişleri sil
+            deleteFoodFromCart()
 
+        }
+        builder.setNegativeButton("Hayır") { dialog, which ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
     fun deleteFoodFromCart() {
         // foodList içindeki her bir öğeyi silebilirsiniz
         foodList.forEach { viewModel.deleteFoodFromCart(it.cart_food_id, it.username) }
 
+        // Sepet listesini yeniden yükleyin
         viewModel.loadCart("sametersoyoglu")
 
+        //viewModel.cartFoodList.value = emptyList()
     }
-
     private fun showCongratsDialog() {
         val congratsDialogBuilder = AlertDialog.Builder(context)
         congratsDialogBuilder.setTitle("Tebrikler")
@@ -121,3 +111,4 @@ class CartFragment : Fragment() {
         handler.postDelayed(runnable, 3000)
     }
 }
+

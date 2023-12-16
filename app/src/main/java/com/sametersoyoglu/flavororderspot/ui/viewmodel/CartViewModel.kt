@@ -21,33 +21,25 @@ class CartViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
         loadCart("sametersoyoglu")
     }
 
-    fun addToCart(food_name : String,
-                food_image_name : String,
-                food_price : Int,
-                food_order_quantity : Int,
-                username : String) {
+    fun addToCart(food_name : String, food_image_name : String, food_price : Int,
+                  food_order_quantity : Int, username : String) {
         CoroutineScope(Dispatchers.Main).launch {
             foodsRepository.addToCart(food_name,food_image_name,food_price,food_order_quantity,username)
         }
+        totalPrice()
     }
 
-    fun loadCart(username:String) {
 
+    fun loadCart(username: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            //cartFoodList.value = foodsRepository.loadCart(username)
-            //totalPrice()
             try {
                 cartFoodList.value = foodsRepository.loadCart(username)
+
             }catch (e:Exception){
-                cartFoodList.value = null
-                Log.e("hata mesajı",e.message.toString())
-            }
-            foodsRepository.loadCart(username).forEach{
-                Log.d("sipariş",it.username)
+                Log.e("sametersoyoglu","SepetViewModel başarısız $username")
             }
             totalPrice()
         }
-
     }
 
 

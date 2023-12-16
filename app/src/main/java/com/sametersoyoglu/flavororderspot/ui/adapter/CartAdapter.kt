@@ -37,7 +37,7 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
         Glide.with(mContext).load(url).into(t.imageViewFood)
 
         t.minusButton.setOnClickListener {
-            if (cart.food_order_quantity > 1) {
+            if (cart.food_order_quantity > 0) {
                 cart.food_order_quantity --
                 t.orderAmountText.text = cart.food_order_quantity.toString()
 
@@ -47,7 +47,6 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
                 // Update the total price when decreasing quantity
                 //t.foodPriceTotalText.text = "${cart.food_price * cart.food_order_quantity} ₺"
                 //t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
-
             }
         }
 
@@ -66,6 +65,7 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
             cart.food_order_quantity++
             t.orderAmountText.text = cart.food_order_quantity.toString()
              */
+
             cartFoodList.forEach {
                 if(cart.food_name == it.food_name){
                     viewModel.deleteFoodFromCart(it.cart_food_id,it.username)
@@ -75,6 +75,7 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
             }
             cart.food_order_quantity++
             t.orderAmountText.text = cart.food_order_quantity.toString()
+
 
         }
 

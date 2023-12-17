@@ -20,7 +20,6 @@ class CartViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
     init {
         loadCart("sametersoyoglu")
     }
-
     fun addToCart(food_name : String, food_image_name : String, food_price : Int,
                   food_order_quantity : Int, username : String) {
         CoroutineScope(Dispatchers.Main).launch {
@@ -28,8 +27,6 @@ class CartViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
         }
         totalPrice()
     }
-
-
     fun loadCart(username: String) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
@@ -41,25 +38,27 @@ class CartViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
             totalPrice()
         }
     }
-
-
     fun deleteFoodFromCart(cart_food_id: Int, username: String) {
         CoroutineScope(Dispatchers.Main).launch {
             foodsRepository.deleteFoodFromCart(cart_food_id,username)
             cartFoodList.value = foodsRepository.loadCart(username)
 
-            loadCart(username)
             totalPrice()
+            loadCart(username)
         }
     }
+    fun updateCart(cart: CartItem) {
+        deleteFoodFromCart(cart.cart_food_id, cart.username)
+        addToCart(cart.food_name, cart.food_image_name, cart.food_price, cart.food_order_quantity, "sametersoyoglu")
+    }
 
-    private fun totalPrice(){
+    fun totalPrice(){
         val foodList = cartFoodList.value
         var total = 0
 
-        foodList?.forEach { cartFood ->
-            val foodPrice = cartFood.food_price
-            val quantity = cartFood.food_order_quantity
+        foodList?.forEach { cart ->
+            val foodPrice = cart.food_price
+            val quantity = cart.food_order_quantity
             total += foodPrice * quantity
         }
         totalPrice.value = total

@@ -55,7 +55,6 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //binding.cartFragment= this
 
         viewModel.cartFoodList.observe(viewLifecycleOwner) { cartfoods ->
             cartfoods?.let {
@@ -64,8 +63,6 @@ class CartFragment : Fragment() {
                 foodList = it
             }
         }
-
-
         viewModel.totalPrice.observe(viewLifecycleOwner) {
             binding.totalPriceText.text = "₺${it}"
         }
@@ -94,7 +91,6 @@ class CartFragment : Fragment() {
         // Sepet listesini yeniden yükleyin
         viewModel.loadCart("sametersoyoglu")
 
-        //viewModel.cartFoodList.value = emptyList()
     }
     private fun showCongratsDialog() {
         val congratsDialogBuilder = AlertDialog.Builder(context)

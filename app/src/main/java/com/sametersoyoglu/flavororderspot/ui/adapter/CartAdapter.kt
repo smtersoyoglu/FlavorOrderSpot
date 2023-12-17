@@ -14,8 +14,6 @@ import com.sametersoyoglu.flavororderspot.ui.viewmodel.CartViewModel
 
 class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var viewModel:CartViewModel) : RecyclerView.Adapter<CartAdapter.CartItemHolder>(){
 
-    private var quantity: Int = 1
-
     inner class CartItemHolder(var binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemHolder {
@@ -28,55 +26,25 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
         val cart = cartFoodList.get(position)
         val t = holder.binding
 
-        t.foodNameTextView.text = cart.food_name
-        t.foodPriceTextView.text = "₺${cart.food_price}"
-        t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
-        t.orderAmountText.text = cart.food_order_quantity.toString()
-
+        t.apply {
+            foodNameTextView.text = cart.food_name
+            foodPriceTextView.text = "₺${cart.food_price}"
+            foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
+            orderAmountText.text = cart.food_order_quantity.toString()
+        }
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${cart.food_image_name}"
         Glide.with(mContext).load(url).into(t.imageViewFood)
 
         t.minusButton.setOnClickListener {
-            if (cart.food_order_quantity > 0) {
+            if (cart.food_order_quantity > 1) {
                 cart.food_order_quantity --
-                t.orderAmountText.text = cart.food_order_quantity.toString()
-
-                if (cart.food_order_quantity == 0) {
-                    viewModel.deleteFoodFromCart(cart.cart_food_id,cart.username)
-                }
-                // Update the total price when decreasing quantity
-                //t.foodPriceTotalText.text = "${cart.food_price * cart.food_order_quantity} ₺"
-                //t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
+                updateUI(cart,t)
             }
         }
 
         t.plusButton.setOnClickListener {
-
-            /*
-            val cartFood = cartFoodList.find { it.food_name == cart.food_name }
-            if (cartFood != null) {
-                // Eğer cartFoodList içinde bu yemek varsa
-                viewModel.deleteFoodFromCart(cartFood.cart_food_id, cartFood.username)
-                viewModel.addToCart(cartFood.food_name, cartFood.food_image_name, cartFood.food_price,cartFood.food_order_quantity + 1, "sametersoyoglu")
-            } else {
-                // Eğer cartFoodList içinde bu yemek yoksa, yenisini ekleyin
-                viewModel.addToCart(cart.food_name, cart.food_image_name, cart.food_price, 1, "sametersoyoglu")
-            }
             cart.food_order_quantity++
-            t.orderAmountText.text = cart.food_order_quantity.toString()
-             */
-
-            cartFoodList.forEach {
-                if(cart.food_name == it.food_name){
-                    viewModel.deleteFoodFromCart(it.cart_food_id,it.username)
-                    quantity += it.food_order_quantity
-                    viewModel.addToCart(cart.food_name,cart.food_image_name,cart.food_price,quantity,"sametersoyoglu")
-                }
-            }
-            cart.food_order_quantity++
-            t.orderAmountText.text = cart.food_order_quantity.toString()
-
-
+            updateUI(cart, t)
         }
 
         t.closeButton.setOnClickListener {
@@ -92,6 +60,13 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
     override fun getItemCount(): Int {
         return cartFoodList.size
+    }
+
+    private fun updateUI(cart: CartItem, t: ItemCartBinding) {
+        t.orderAmountText.text = cart.food_order_quantity.toString()
+        t.foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
+        viewModel.totalPrice()
+        viewModel.updateCart(cart)
     }
 
     fun CartItem.getTotalPrice(): Int {

@@ -9,12 +9,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : ViewModel() {
 
-    var foodsList = MutableLiveData<List<Foods>>()
+    var foodsList = MutableLiveData<List<Foods>?>()
 
     init {
         loadFoods()
@@ -35,5 +36,8 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
              */
         }
     }
-
+    fun search(query: String) {
+        val result = foodsList.value?.filter { it.food_name.contains(query, ignoreCase = true) }
+        foodsList.value = result
+    }
 }

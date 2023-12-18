@@ -41,7 +41,7 @@
             android:id="@+id/foodDetailsFragmentTocartFragment"
             app:destination="@id/cartFragment" />
         <action
-            android:id="@+id/action_foodDetailsFragment_to_homeFragment"
+            android:id="@+id/foodDetailsFragmentTohomeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment

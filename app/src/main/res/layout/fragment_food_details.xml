@@ -105,7 +105,6 @@
                 tools:layout_editor_absoluteX="384dp" />
         </LinearLayout>
 
-
         <TextView
             android:id="@+id/totalPriceText"
             android:layout_width="wrap_content"

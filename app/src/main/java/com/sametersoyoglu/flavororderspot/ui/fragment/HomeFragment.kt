@@ -22,8 +22,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // ViewModeli bağlama - onCreate içersinde olur bu işlem
@@ -57,7 +55,6 @@ class HomeFragment : Fragment() {
             //binding.foodsListAdapter = foodsListAdapter}
         }
 
-        /*
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean { //harf girdikçe harf sildikce sonuç getirir.
                 viewModel.search(newText)
@@ -68,8 +65,13 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
-         */
 
+        binding.searchView.setOnCloseListener(object : SearchView.OnCloseListener {
+            override fun onClose(): Boolean {
+                viewModel.loadFoods()
+                return true
+            }
+        })
     }
     override fun onResume() {
         super.onResume()

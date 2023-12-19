@@ -1,8 +1,14 @@
 package com.sametersoyoglu.flavororderspot.ui.fragment
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.app.AlertDialog
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +17,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieCompositionFactory
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.data.entity.CartItem
 import com.sametersoyoglu.flavororderspot.databinding.FragmentCartBinding
@@ -73,7 +81,7 @@ class CartFragment : Fragment() {
         builder.setTitle("Siparişi Onaylıyor musunuz?")
         builder.setPositiveButton("Evet") { dialog, which ->
             dialog.dismiss()
-            showCongratsDialog()
+            showCAnimationDialog()
             // Sipariş onaylandığında siparişleri sil
             deleteFoodFromCart()
 
@@ -92,19 +100,36 @@ class CartFragment : Fragment() {
         viewModel.loadCart("sametersoyoglu")
 
     }
-    private fun showCongratsDialog() {
-        val congratsDialogBuilder = AlertDialog.Builder(context)
-        congratsDialogBuilder.setTitle("Tebrikler")
-        congratsDialogBuilder.setMessage("Sipariş verdiniz!")
-
-        val congratsDialog = congratsDialogBuilder.create()
-        congratsDialog.show()
-
-        val handler = Handler()
-        val runnable = Runnable {
-            congratsDialog.dismiss()
+    private fun showCAnimationDialog() {
+        // Dialog oluştur
+        val dialog = Dialog(requireContext())
+        // Dialog için layout belirle
+        dialog.setContentView(R.layout.order_anim)
+        // Dialog'un dışında tıklanınca kapanmasını engelle
+        dialog.setCanceledOnTouchOutside(false)
+        // LottieAnimationView'ı bul
+        val animationView = dialog.findViewById<LottieAnimationView>(R.id.animationView)
+        // Animasyonun JSON stringini dosyadan oku
+        val json = resources.openRawResource(R.raw.order_anim)
+            .bufferedReader().use { it.readText() }
+        // Animasyonu yükle
+        LottieCompositionFactory.fromJsonString(json, "order_anim.json").addListener { lottieResult ->
+            lottieResult?.let { composition ->
+                animationView.setComposition(composition)
+                // Animasyon süresini 2 saniye olarak belirle
+                animationView.speed = (composition.duration / 2000f)
+                // Animasyonu başlat
+                animationView.playAnimation()
+                // Dialog'u göster
+                dialog.show()
+                // 2 saniye sonra dialog'u kapat
+                animationView.postDelayed({
+                    if (dialog.isShowing) {
+                        dialog.dismiss()
+                    }
+                }, 2000)
+            }
         }
-        handler.postDelayed(runnable, 3000)
     }
 }
 

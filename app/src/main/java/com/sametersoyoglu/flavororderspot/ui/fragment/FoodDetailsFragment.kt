@@ -51,6 +51,11 @@ class FoodDetailsFragment : Fragment() {
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${receivedFood.food_image_name}"
         Glide.with(this).load(url).into(binding.foodImage)
 
+        binding.exitImageView.setOnClickListener {
+            val action = FoodDetailsFragmentDirections.foodDetailsFragmentTohomeFragment()
+            findNavController().navigate(action)
+        }
+
 
 }
     fun onAddToCartButtonClicked(food_name : String, food_image_name : String, food_price : Int,

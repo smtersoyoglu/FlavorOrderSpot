@@ -14,7 +14,10 @@ interface FavoriteFoodsDao {
     @Insert
     suspend fun addFavorite(favoriteFoods: FavoriteFoods)
 
-    @Query("DELETE FROM favorites WHERE food_id = food_id")
+    @Query("DELETE FROM favorites WHERE food_id = :food_id")
     suspend fun  deleteFavorite(food_id:Int)
+
+    @Query("SELECT COUNT(*) FROM favorites WHERE food_id = :food_id")
+    suspend fun isFavorite(food_id: Int): Int
 
 }

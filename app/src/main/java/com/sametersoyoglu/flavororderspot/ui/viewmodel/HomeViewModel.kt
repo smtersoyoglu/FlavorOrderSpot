@@ -3,6 +3,7 @@ package com.sametersoyoglu.flavororderspot.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sametersoyoglu.flavororderspot.data.entity.FavoriteFoods
 import com.sametersoyoglu.flavororderspot.data.entity.Foods
 import com.sametersoyoglu.flavororderspot.data.repo.FoodsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,26 +17,36 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : ViewModel() {
 
     var foodsList = MutableLiveData<List<Foods>?>()
+    var favoriteFoodsList = MutableLiveData<List<FavoriteFoods>>()
 
     init {
         loadFoods()
+        favoriteFoodsLoad()
     }
     fun loadFoods(){
         CoroutineScope(Dispatchers.Main).launch {
             foodsList.value = foodsRepository.loadFoods()
-            /*
-            try {
-                val loadedFoods = foodsRepository.loadFoods()
-                foodsList.value = loadedFoods
-                loadedFoods.forEach {
-                    Log.d("foods",it.food_name)
-                }
-            }catch (e: Exception){
-                Log.e("foods","Hata oluştu: ${e.message}")
-            }
-             */
         }
     }
+
+    fun favoriteFoodsLoad() {
+        CoroutineScope(Dispatchers.Main).launch {
+            favoriteFoodsList.value = foodsRepository.favoriteFoodsLoad()
+        }
+    }
+
+    fun addFavoriteFoods(food_id : Int, food_name:String,food_image_name:String,food_price:Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            foodsRepository.addFavoriteFoods(food_id,food_name,food_image_name,food_price)
+        }
+    }
+
+    fun deleteFavorite(food_id: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            foodsRepository.deleteFavorite(food_id)
+        }
+    }
+
     fun search(query: String) {
         val result = foodsList.value?.filter { it.food_name.contains(query, ignoreCase = true) }
         foodsList.value = result

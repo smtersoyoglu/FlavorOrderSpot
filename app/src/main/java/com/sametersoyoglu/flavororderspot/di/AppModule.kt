@@ -1,12 +1,17 @@
 package com.sametersoyoglu.flavororderspot.di
 
+import android.content.Context
+import androidx.room.Room
 import com.sametersoyoglu.flavororderspot.data.datasource.FoodsDataSource
 import com.sametersoyoglu.flavororderspot.data.repo.FoodsRepository
 import com.sametersoyoglu.flavororderspot.retrofit.ApiUtils
 import com.sametersoyoglu.flavororderspot.retrofit.FoodsDao
+import com.sametersoyoglu.flavororderspot.room.FavFoodsDataBase
+import com.sametersoyoglu.flavororderspot.room.FavoriteFoodsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -16,8 +21,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideFoodsDataSource(foodsDao: FoodsDao): FoodsDataSource {
-        return FoodsDataSource(foodsDao)
+    fun provideFoodsDataSource(foodsDao: FoodsDao,favoriteFoodsDao: FavoriteFoodsDao): FoodsDataSource {
+        return FoodsDataSource(foodsDao,favoriteFoodsDao)
     }
 
     @Provides
@@ -33,4 +38,11 @@ class AppModule {
         return ApiUtils.getFoodsDao()
     }
 
+    @Provides
+    @Singleton
+    fun provideFavoriteFoodsDao(@ApplicationContext context: Context) : FavoriteFoodsDao {
+        val vt = Room.databaseBuilder(context,FavFoodsDataBase::class.java,"favoriteFoods.sqlite")
+            .createFromAsset("favoriteFoods.sqlite").build()
+        return vt.getFavoriteFoodsDao()
+    }
 }

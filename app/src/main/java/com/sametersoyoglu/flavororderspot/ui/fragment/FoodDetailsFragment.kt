@@ -22,6 +22,7 @@ class FoodDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodDetailsBinding
     private lateinit var viewModel: FoodDetailsViewModel
+    private var booleanFavState : Boolean = false
     private var count = 1
     private var totalPrice = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,11 +52,11 @@ class FoodDetailsFragment : Fragment() {
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${receivedFood.food_image_name}"
         Glide.with(this).load(url).into(binding.foodImage)
 
+
         binding.exitImageView.setOnClickListener {
             val action = FoodDetailsFragmentDirections.foodDetailsFragmentTohomeFragment()
             findNavController().navigate(action)
         }
-
 
 }
     fun onAddToCartButtonClicked(food_name : String, food_image_name : String, food_price : Int,
@@ -82,5 +83,20 @@ class FoodDetailsFragment : Fragment() {
     fun totalPrice() {
         totalPrice = count * binding.foodObject!!.food_price
         binding.totalPriceText.text = "${totalPrice} ₺"
+    }
+
+    fun addFavoriteFoods(food_id : Int, food_name:String,food_image_name:String,food_price:Int) {
+        if (booleanFavState){
+            viewModel.deleteFavorite(food_id)
+            binding.favImageView.setImageResource(R.drawable.heart_gray)
+            booleanFavState = false
+
+        }
+        else{
+            viewModel.addFavoriteFoods(food_id,food_name,food_image_name,food_price)
+            binding.favImageView.setImageResource(R.drawable.heart_red)
+            booleanFavState = true
+
+        }
     }
 }

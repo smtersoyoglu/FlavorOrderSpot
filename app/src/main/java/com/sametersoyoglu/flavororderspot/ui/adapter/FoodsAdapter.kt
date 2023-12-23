@@ -26,6 +26,7 @@ class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewM
     override fun onBindViewHolder(holder: FoodsViewHolder, position: Int) {
         val food = foodsList.get(position)
         val t = holder.binding
+        var fav = false
 
         t.foodsObject = food
 
@@ -38,6 +39,18 @@ class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewM
         t.foodItemCardView.setOnClickListener {
             val action = HomeFragmentDirections.homeFragmentTofoodDetailsFragment(food)
             Navigation.gecisYap(it,action)
+        }
+
+        t.favButton.setOnClickListener {
+            fav = !fav
+            if (fav == false){
+                t.favButton.setImageResource(R.drawable.heart_gray)
+                viewModel.deleteFavorite(food.food_id)
+            }
+            else{
+                viewModel.addFavoriteFoods(food.food_id,food.food_name,food.food_image_name,food.food_price)
+                t.favButton.setImageResource(R.drawable.heart_red)
+            }
         }
     }
 

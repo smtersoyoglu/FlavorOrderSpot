@@ -6,6 +6,9 @@
         <variable
             name="foodsObject"
             type="com.sametersoyoglu.flavororderspot.data.entity.Foods" />
+        <variable
+            name="favFoods"
+            type="com.sametersoyoglu.flavororderspot.data.entity.FavoriteFoods" />
         
     </data>
 

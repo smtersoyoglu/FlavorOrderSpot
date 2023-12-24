@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,9 @@ import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.databinding.FragmentFoodDetailsBinding
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.FoodDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 
@@ -52,6 +56,19 @@ class FoodDetailsFragment : Fragment() {
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${receivedFood.food_image_name}"
         Glide.with(this).load(url).into(binding.foodImage)
 
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.favState.value = viewModel.isFavorite(receivedFood.food_id).toString()
+        }
+
+        viewModel.favState.observe(viewLifecycleOwner){
+            if (viewModel.favState.value!!.toInt() > 0){
+                binding.favImageView.setImageResource(R.drawable.heart_red)
+
+            }else{
+                binding.favImageView.setImageResource(R.drawable.heart_gray)
+
+            }
+        }
 
         binding.exitImageView.setOnClickListener {
             val action = FoodDetailsFragmentDirections.foodDetailsFragmentTohomeFragment()
@@ -85,18 +102,21 @@ class FoodDetailsFragment : Fragment() {
         binding.totalPriceText.text = "${totalPrice} ₺"
     }
 
+
     fun addFavoriteFoods(food_id : Int, food_name:String,food_image_name:String,food_price:Int) {
-        if (booleanFavState){
-            viewModel.deleteFavorite(food_id)
-            binding.favImageView.setImageResource(R.drawable.heart_gray)
-            booleanFavState = false
-
-        }
-        else{
-            viewModel.addFavoriteFoods(food_id,food_name,food_image_name,food_price)
-            binding.favImageView.setImageResource(R.drawable.heart_red)
-            booleanFavState = true
-
+        CoroutineScope(Dispatchers.Main).launch {
+            val isFavorite = viewModel.isFavorite(food_id)
+            if (isFavorite == 1){
+                // Yemek zaten favorilerde, bu yüzden tekrar eklemeyin.
+                Toast.makeText(context, "Bu yemek zaten favorilerinizde.", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                viewModel.addFavoriteFoods(food_id,food_name,food_image_name,food_price)
+                binding.favImageView.setImageResource(R.drawable.heart_red)
+                booleanFavState = true
+            }
         }
     }
+
+
 }

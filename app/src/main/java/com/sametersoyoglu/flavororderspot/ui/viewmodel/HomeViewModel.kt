@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Locale
 import javax.inject.Inject
 
@@ -50,5 +51,15 @@ class HomeViewModel @Inject constructor(var foodsRepository: FoodsRepository) : 
     fun search(query: String) {
         val result = foodsList.value?.filter { it.food_name.contains(query, ignoreCase = true) }
         foodsList.value = result
+    }
+
+    suspend fun isFavorite(food_id: Int): Int {
+        var result = 0
+        CoroutineScope(Dispatchers.Main).launch {
+            withContext(Dispatchers.IO) {
+                result = foodsRepository.isFavorite(food_id)
+            }
+        }.join()
+        return result
     }
 }

@@ -13,6 +13,9 @@ import com.sametersoyoglu.flavororderspot.databinding.ItemFoodsBinding
 import com.sametersoyoglu.flavororderspot.ui.fragment.HomeFragmentDirections
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.HomeViewModel
 import com.sametersoyoglu.flavororderspot.util.gecisYap
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewModel: HomeViewModel) : RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>(){
 
@@ -32,6 +35,17 @@ class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewM
 
         //t.foodName.text = "${food.food_name}"
         //t.foodPrice.text = "${food.food_price} ₺"
+
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val favoriteCount = getFavoriteCount(food.food_id)
+            val isFavorite = favoriteCount > 0
+            if (isFavorite) {
+                t.favButton.setImageResource(R.drawable.heart_red)
+            } else {
+                t.favButton.setImageResource(R.drawable.heart_gray)
+            }
+        }
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.food_image_name}"
         Glide.with(mContext).load(url).into(t.foodImage)
@@ -56,5 +70,9 @@ class FoodsAdapter (var mContext: Context, var foodsList: List<Foods>, var viewM
 
     override fun getItemCount(): Int {
         return foodsList.size
+    }
+
+    suspend fun getFavoriteCount(food_id : Int) : Int {
+        return viewModel.isFavorite(food_id)
     }
 }

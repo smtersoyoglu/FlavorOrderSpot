@@ -11,30 +11,33 @@
     </data>
 
     <LinearLayout
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundColor">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/foodItemCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/cardColor">
 
             <ImageButton
                 android:id="@+id/favButton"
                 android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
                 android:background="#00FFFFFF"
-                app:srcCompat="@drawable/heart_red"                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/heart_red"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -53,8 +56,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/black"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/textColor"
                 android:text="@{favFoodsObject.food_name}"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -69,6 +72,7 @@
                 android:layout_marginTop="8dp"
                 android:text='@{"₺ " + favFoodsObject.food_price}'
                 android:textSize="18sp"
+                android:textColor="@color/textColor"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,10 +80,10 @@
 
             <ImageView
                 android:id="@+id/favDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintStart_toStartOf="@+id/imageViewFood"
                 app:layout_constraintTop_toTopOf="@+id/imageViewFood"
                 app:srcCompat="@drawable/close" />

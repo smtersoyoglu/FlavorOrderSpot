@@ -15,26 +15,30 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundColor">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/foodItemCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            app:cardCornerRadius="15dp">
+            app:cardCornerRadius="4dp"
+            android:background="@color/backgroundColor"
+            app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/cardColor">
 
                 <ImageButton
                     android:id="@+id/favButton"
                     android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
                     android:background="#00FFFFFF"
                     android:src="@drawable/heart_gray"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +63,7 @@
                     android:layout_marginTop="8dp"
                     android:text='@{foodsObject.food_price +" ₺"}'
                     android:textSize="18sp"
+                    android:textColor="@color/textColor"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +76,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{foodsObject.food_name}"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

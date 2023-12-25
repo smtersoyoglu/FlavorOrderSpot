@@ -3,5 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cartFoodName">#373b54</color>
-
+    <color name="backgroundColor">#131313</color>
+    <color name="buttonColor">#FFB301</color>
+    <color name="cardColor">#262626</color>
+    <color name="textColor">#E9E9E9</color>
+    <color name="textColor2">#989898</color>
 </resources>

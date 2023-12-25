@@ -20,7 +20,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.FoodDetailsFragment">
+        tools:context=".ui.fragment.FoodDetailsFragment"
+        android:background="@color/backgroundColor">
 
 
         <ImageView
@@ -41,6 +42,7 @@
             android:text='@{foodObject.food_price +" ₺"}'
             android:textSize="24sp"
             android:textStyle="bold"
+            android:textColor="@color/textColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/foodImage" />
@@ -51,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@{foodObject.food_name}"
-            android:textColor="@color/black"
+            android:textColor="@color/textColor"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +84,7 @@
                 android:layout_height="55dp"
                 android:gravity="center"
                 android:text="@{foodCount.toString()}"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/foodName" />
@@ -104,6 +107,7 @@
             android:layout_marginBottom="24dp"
             android:text=""
             android:textSize="24sp"
+            android:textColor="@color/textColor"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -114,9 +118,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Add to cart"
+            android:background="@color/buttonColor"
             android:onClick="@{() -> foodDetailsFragment.onAddToCartButtonClicked(foodObject.food_name, foodObject.food_image_name, foodObject.food_price,foodCount,`sametersoyoglu`)}"
+            android:text="Add to cart"
+            android:textColor="@color/black"
             android:textSize="24sp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="12dp"
             app:cornerRadius="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -130,7 +140,7 @@
             android:onClick="@{() -> foodDetailsFragment.addFavoriteFoods(foodObject.food_id,foodObject.food_name,foodObject.food_image_name,foodObject.food_price)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/heart_gray" />
+            app:srcCompat="@drawable/heart_grayy" />
 
         <ImageView
             android:id="@+id/exitImageView"

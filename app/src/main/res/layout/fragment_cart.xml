@@ -16,7 +16,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.CartFragment">
+        tools:context=".ui.fragment.CartFragment"
+        android:background="@color/backgroundColor">
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
@@ -27,7 +28,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundColor">
 
                 <TextView
                     android:id="@+id/totalText"
@@ -37,6 +39,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="Total"
+                    android:textColor="@color/textColor"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/orderButton"
@@ -51,6 +54,7 @@
                     android:layout_marginEnd="28dp"
                     android:layout_marginBottom="16dp"
                     android:text=""
+                    android:textColor="@color/textColor"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/orderButton"
@@ -67,6 +71,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="Checkout"
+                    android:background="@color/buttonColor"
+                    android:textColor="@color/black"
                     android:onClick="@{() -> cartFragment.orderButton()}"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -81,6 +87,7 @@
             android:id="@+id/cartRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/backgroundColor"
             android:adapter="@{cartAdapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/cardView"

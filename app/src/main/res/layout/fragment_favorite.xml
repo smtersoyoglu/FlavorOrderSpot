@@ -16,6 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
         tools:context=".ui.fragment.FavoriteFragment">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@
             app:spanCount="2"
             android:adapter="@{favAdapter}"
             android:layout_height="match_parent"
+            android:background="@color/backgroundColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

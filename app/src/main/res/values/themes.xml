@@ -1,8 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FlavorOrderSpot" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.FlavorOrderSpot" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimaryDark">@color/backgroundColor</item>
+        <item name="android:editTextColor">@color/white</item>
+
     </style>
 
     <style name="Theme.FlavorOrderSpot" parent="Base.Theme.FlavorOrderSpot" />

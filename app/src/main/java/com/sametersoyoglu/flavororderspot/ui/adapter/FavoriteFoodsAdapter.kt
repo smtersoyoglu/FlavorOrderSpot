@@ -1,13 +1,11 @@
 package com.sametersoyoglu.flavororderspot.ui.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.data.entity.FavoriteFoods
 import com.sametersoyoglu.flavororderspot.databinding.ItemFavoriteBinding

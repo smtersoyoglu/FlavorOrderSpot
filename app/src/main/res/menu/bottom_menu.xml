@@ -4,16 +4,16 @@
         android:id="@+id/homeFragment"
         android:icon="@drawable/home_icon"
         android:menuCategory="secondary"
-        android:title="Anasayfa" />
+        android:title="Home" />
     <item
         android:id="@+id/cartFragment"
         android:icon="@drawable/cart_icon"
         android:menuCategory="secondary"
-        android:title="Sepet" />
+        android:title="Cart" />
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/favorite"
         android:menuCategory="secondary"
-        android:title="Favoriler" />
+        android:title="Favorites" />
 
 </menu>

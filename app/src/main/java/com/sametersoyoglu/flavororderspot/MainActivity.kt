@@ -3,6 +3,7 @@ package com.sametersoyoglu.flavororderspot
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.replace
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.sametersoyoglu.flavororderspot.databinding.ActivityMainBinding
@@ -22,6 +23,5 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         NavigationUI.setupWithNavController(binding.bottomnavigation , navHostFragment.navController)
-
     }
 }

@@ -16,6 +16,7 @@
             android:layout_height="120dp"
             android:layout_margin="8dp"
             app:cardCornerRadius="4dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -42,6 +43,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     android:text=""
+                    android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/textColor"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -52,11 +54,12 @@
                     android:id="@+id/foodPriceTotalText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="14dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="0 ₺"
                     android:textColor="@color/textColor2"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -71,6 +74,7 @@
                     android:layout_marginEnd="16dp"
                     android:text="0 ₺"
                     android:textColor="@color/textColor"
+                    android:fontFamily="@font/poppins_regular"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/foodNameTextView"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -123,11 +127,11 @@
                     android:id="@+id/closeButton"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/close" />
+                    app:srcCompat="@drawable/delete" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

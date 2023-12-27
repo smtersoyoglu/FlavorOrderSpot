@@ -3,9 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cartFoodName">#373b54</color>
-    <color name="backgroundColor">#131313</color>
-    <color name="buttonColor">#FFB301</color>
-    <color name="cardColor">#262626</color>
-    <color name="textColor">#E9E9E9</color>
-    <color name="textColor2">#989898</color>
+    <color name="backgroundColor">#F7F7F7</color>
+    <color name="buttonColor">#fea900</color>
+    <color name="cardColor">#FFFFFF</color>
+    <color name="textColor">#191E24</color>
+    <color name="textColor2">#F24957</color>
+
+    <color name="selected_color">#cc7a00</color>
+    <color name="default_color">#7A7A7A</color>
 </resources>

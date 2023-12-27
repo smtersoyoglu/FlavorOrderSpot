@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text='@{foodObject.food_price +" ₺"}'
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/textColor"
@@ -54,6 +55,7 @@
             android:layout_marginTop="16dp"
             android:text="@{foodObject.food_name}"
             android:textColor="@color/textColor"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,6 +86,7 @@
                 android:layout_height="55dp"
                 android:gravity="center"
                 android:text="@{foodCount.toString()}"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -106,6 +109,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginBottom="24dp"
             android:text=""
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="24sp"
             android:textColor="@color/textColor"
             android:textStyle="bold"
@@ -121,6 +125,7 @@
             android:background="@color/buttonColor"
             android:onClick="@{() -> foodDetailsFragment.onAddToCartButtonClicked(foodObject.food_name, foodObject.food_image_name, foodObject.food_price,foodCount,`sametersoyoglu`)}"
             android:text="Add to cart"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:paddingStart="12dp"
@@ -140,7 +145,7 @@
             android:onClick="@{() -> foodDetailsFragment.addFavoriteFoods(foodObject.food_id,foodObject.food_name,foodObject.food_image_name,foodObject.food_price)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/heart_grayy" />
+            app:srcCompat="@drawable/heart_gray" />
 
         <ImageView
             android:id="@+id/exitImageView"

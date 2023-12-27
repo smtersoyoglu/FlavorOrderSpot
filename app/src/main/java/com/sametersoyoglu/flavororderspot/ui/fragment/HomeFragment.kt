@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.homeFragment = this
-        binding.toolbarTitle = "Hoşgeldiniz"
+        binding.toolbarTitle = "Welcome"
 
         val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerView.layoutManager = layoutManager

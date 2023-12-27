@@ -25,7 +25,7 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="4dp"
             android:background="@color/backgroundColor"
-            app:cardElevation="0dp">
+            app:cardElevation="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -64,6 +64,7 @@
                     android:text='@{foodsObject.food_price +" ₺"}'
                     android:textSize="18sp"
                     android:textColor="@color/textColor"
+                    android:fontFamily="@font/poppins_regular"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +78,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="@{foodsObject.food_name}"
                     android:textColor="@color/textColor"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

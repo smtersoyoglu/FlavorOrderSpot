@@ -78,15 +78,15 @@ class CartFragment : Fragment() {
     }
     fun orderButton() {
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Siparişi Onaylıyor musunuz?")
-        builder.setPositiveButton("Evet") { dialog, which ->
+        builder.setTitle("Do you confirm the order?")
+        builder.setPositiveButton("Yes") { dialog, which ->
             dialog.dismiss()
             showCAnimationDialog()
             // Sipariş onaylandığında siparişleri sil
             deleteFoodFromCart()
 
         }
-        builder.setNegativeButton("Hayır") { dialog, which ->
+        builder.setNegativeButton("No") { dialog, which ->
             dialog.dismiss()
         }
         val dialog = builder.create()

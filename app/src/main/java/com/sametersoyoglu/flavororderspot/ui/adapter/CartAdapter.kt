@@ -28,7 +28,7 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
         t.apply {
             foodNameTextView.text = cart.food_name
-            foodPriceTextView.text = "₺${cart.food_price}"
+            foodPriceTextView.text = "${cart.food_price} ₺"
             foodPriceTotalText.text = "${cart.getTotalPrice()} ₺"
             orderAmountText.text = cart.food_order_quantity.toString()
         }
@@ -48,9 +48,9 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
         }
 
         t.closeButton.setOnClickListener {
-            val message = "${cart.food_name} sepetten çıkarılsın mı ?"
+            val message = "Remove ${cart.food_name} from the cart?"
             Snackbar.make(it, message, Snackbar.LENGTH_LONG)
-                .setAction("EVET") {
+                .setAction("YES") {
 
                     viewModel.deleteFoodFromCart(cart.cart_food_id,cart.username)
                     viewModel.loadCart("sametersoyoglu")

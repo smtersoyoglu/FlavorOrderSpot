@@ -1,6 +1,6 @@
 # FlavorOrderSpot
 
-Bu uygulama, kullanıcıların istedikleri yemek ve içecekleri arama yapabileceği, sepetine ekleyebileceği, sipariş verebileceği ve sevdikleri, favori yemeklerini favoriler sayfasına ekleyebileceği bir yemek sipariş uygulamasıdır. API ile yemekleri internetten çekiyoruz.
+Bu uygulama, kullanıcıların istedikleri yemek ve içecekleri arama yapabileceği, sepetine ekleyebileceği, sipariş verebileceği ve sevdikleri, favori yemeklerini favoriler sayfasına ekleyebileceği bir yemek sipariş uygulamasıdır.
 
 # Kullanılan Teknolojiler(Kütüphaneler)
 - MVVM / ViewModel

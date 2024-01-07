@@ -2,6 +2,7 @@ package com.sametersoyoglu.flavororderspot
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.replace
 import androidx.navigation.fragment.NavHostFragment
@@ -23,5 +24,13 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         NavigationUI.setupWithNavController(binding.bottomnavigation , navHostFragment.navController)
+
+        // Navigation Listener ekleyin
+        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.splashScreenFragment -> binding.bottomnavigation.visibility = View.GONE
+                else -> binding.bottomnavigation.visibility = View.VISIBLE
+            }
+        }
     }
 }

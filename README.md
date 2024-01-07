@@ -8,7 +8,7 @@ Bu uygulama, kullanıcıların istedikleri yemek ve içecekleri arama yapabilece
 - Retrofit
 - Room 
 - Glide
-- Dagger
+- Dagger Hilt
 - Room
 - Navigation
 - viewBinding - dataBinding 

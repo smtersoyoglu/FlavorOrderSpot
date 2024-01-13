@@ -16,7 +16,7 @@ class SplashScreenFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val timer = object: CountDownTimer(3000, 1000) {
+        val timer = object: CountDownTimer(4000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {

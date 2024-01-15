@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.replace
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sametersoyoglu.flavororderspot.databinding.ActivityMainBinding
 import com.sametersoyoglu.flavororderspot.ui.fragment.CartFragment
 import com.sametersoyoglu.flavororderspot.ui.fragment.FavoriteFragment

@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -23,6 +24,7 @@ import com.sametersoyoglu.flavororderspot.R
 import com.sametersoyoglu.flavororderspot.data.entity.CartItem
 import com.sametersoyoglu.flavororderspot.databinding.FragmentCartBinding
 import com.sametersoyoglu.flavororderspot.ui.adapter.CartAdapter
+import com.sametersoyoglu.flavororderspot.ui.cartDelete.SwipeToDelete
 import com.sametersoyoglu.flavororderspot.ui.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,6 +39,7 @@ class CartFragment : Fragment() {
         // ViewModeli bağlama - onCreate içersinde olur bu işlem
         val tempViewModel : CartViewModel by viewModels() // gecici bir viewmodele atayıp ordan bizim viewmodelimize bağlarız.
         viewModel = tempViewModel
+
 
     }
 
@@ -69,6 +72,9 @@ class CartFragment : Fragment() {
                 val cartAdapter = CartAdapter(requireContext(),it,viewModel)
                 binding.cartRecyclerView.adapter = cartAdapter
                 foodList = it
+
+                val itemTouchHelper = ItemTouchHelper(SwipeToDelete(cartAdapter,viewModel))
+                itemTouchHelper.attachToRecyclerView(binding.cartRecyclerView)
             }
         }
         viewModel.totalPrice.observe(viewLifecycleOwner) {

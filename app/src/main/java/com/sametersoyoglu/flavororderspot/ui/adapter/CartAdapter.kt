@@ -14,6 +14,7 @@ import com.sametersoyoglu.flavororderspot.ui.viewmodel.CartViewModel
 
 class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var viewModel:CartViewModel) : RecyclerView.Adapter<CartAdapter.CartItemHolder>(){
 
+
     inner class CartItemHolder(var binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemHolder {
@@ -71,6 +72,14 @@ class CartAdapter (var mContext: Context, var cartFoodList : List<CartItem>, var
 
     fun CartItem.getTotalPrice(): Int {
         return food_price * food_order_quantity
+    }
+
+    fun removeItem(position: Int) {
+        cartFoodList = cartFoodList.filterIndexed {index, cartItem ->  index != position }
+        notifyItemRemoved(position)
+    }
+    fun getCartItem(position: Int): CartItem {
+        return cartFoodList[position]
     }
 
 }

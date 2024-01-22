@@ -40,7 +40,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:background="#00FFFFFF"
-                    android:src="@drawable/heart_gray"
+                    app:srcCompat="@drawable/heart_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

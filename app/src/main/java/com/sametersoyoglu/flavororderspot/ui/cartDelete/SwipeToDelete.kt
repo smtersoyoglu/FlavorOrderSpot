@@ -42,7 +42,7 @@ class SwipeToDelete (private val adapter: CartAdapter, private val viewModel: Ca
 
         val itemView = viewHolder.itemView
         val background = ColorDrawable()
-        val deleteIcon = ContextCompat.getDrawable(adapter.mContext, R.drawable.delete)
+        val deleteIcon = ContextCompat.getDrawable(adapter.mContext, R.drawable.swipedelete)
         val iconMargin = (itemView.height - deleteIcon!!.intrinsicHeight) / 2
 
         if (dX > 0) {

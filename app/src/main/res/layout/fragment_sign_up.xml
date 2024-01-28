@@ -3,11 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.login.SignUpFragment">
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Kayıt Ol"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="64dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/editTextFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewTitle"
+        android:layout_marginTop="24dp"
+        android:hint="Ad Soyad"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextFullName"
+        android:layout_marginTop="8dp"
+        android:hint="E-posta"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextEmail"
+        android:layout_marginTop="8dp"
+        android:hint="Şifre"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextPassword"
+        android:layout_marginTop="24dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Kayıt Ol"
+        android:background="@color/buttonColor"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/textViewSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSignUp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Hesabınız var mı? Giriş Yap"
+        android:textColor="@color/black"/>
+
 </RelativeLayout>

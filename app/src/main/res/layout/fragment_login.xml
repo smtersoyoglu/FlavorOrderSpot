@@ -18,8 +18,8 @@
         android:layout_above="@id/card_view">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/makarna" />
 
         <TextView
@@ -50,15 +50,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome"
+                android:text="Hoşgeldiniz"
                 android:textSize="32sp"
+                android:textColor="@color/default_color"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Please login with your information"
-                android:alpha="0.7" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -74,10 +69,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEdittextEmail"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Kullanıcı Adı Giriniz"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:layout_height="wrap_content" />
+                    android:textColorHint="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -95,26 +91,15 @@
                     android:id="@+id/textInputEdittextPasword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Şifre Giriniz"
+                    android:inputType="textPassword"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:inputType="textPassword" />
+                    android:textColorHint="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <TextView
-                    android:id="@+id/forgot_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="I forgot my password" />
-
-
-            </RelativeLayout>
+                android:layout_height="wrap_content"/>
 
             <View
                 android:layout_width="wrap_content"
@@ -124,20 +109,14 @@
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Login"
+                android:background="@color/buttonColor"
+                android:text="Giriş Yap"
+                android:textSize="20sp"
                 app:cornerRadius="32dp" />
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Or Login with"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:alpha="0.7" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,19 +130,10 @@
                     android:id="@+id/google_button"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:text="Login with Google"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/txt_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="20dp"
+                    android:background="@color/buttonColor"
+                    android:text="Google İle Giriş Yap"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:layout_centerVertical="true"
-                    android:text="Are you a new user? Register" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
